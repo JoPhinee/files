@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Struktur Kelas</title>
+    <link rel="icon" href="organization.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 8px;
+            background-color: #eaeaea;
+            color: #004d40;
+            box-sizing: border-box;
+        }
+        h2 {
+            color: #004d40;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .photo-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .photo {
+            display: inline-block;
+            width: 200px;
+            height: 300px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            object-fit: cover;
+        }
+        .photo-name {
+            margin-top: 10px;
+            font-weight: 600;
+            color: #004d40;
+        }
+        .notice {
+            text-align: center;
+            color: #00796b;
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+        .members-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .member {
+            background-color: #d2d2ff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+            height: 350px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transform: scale(1);
+            opacity: 0;
+            animation: slideIn 1s ease-out forwards;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+        }
+
+        .member:hover {
+            transform: scale(1.1) rotate(3deg);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            background-color: #a5d6a7;
+        }
+
+        .member img {
+            border-radius: 10px;
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            margin-bottom: 15px;
+            margin-top: 20px;
+        }
+        .role {
+            font-size: 19px;
+            color: #004d40;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .member-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: #004d40;
+            margin-top: 10px;
+        }
+        .directory-link {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .directory-link a {
+            color: #004d40;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+            display: inline-block;
+        }
+        .directory-link a:hover {
+            color: #fff;
+            background-color: #004d40;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transform: translateY(-3px) scale(1.05);
+        }
+        .directory-link a:active {
+            color: #fff;
+            background-color: #003d33;
+            transform: translateY(1px) scale(0.98);
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .members-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .member {
+                width: 350px;
+                height: 275px;
+                padding: 15px;
+            }
+            .member img {
+                width: 170px;
+                height: 170px;
+                margin-top: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .member {
+                width: 360px;
+                height: 290px;
+                padding: 10px;
+            }
+            .member img {
+                width: 172px;
+                height: 172px;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<h2>Struktur Kelas XI TKJ 1</h2>
+
+<div class="photo-container">
+    <img src="pak-yekti.jpg" alt="Foto Wali Kelas" class="photo">
+    <div class="photo-name">Walikelas: Yekti Nugroho, SE</div>
+</div>
+
+<div class="members-container">
+    <div class="member" style="animation-delay: 2s;">
+        <div class="role">Ketua Kelas</div>
+        <img src="ketua.jpg" alt="Ketua Kelas">
+        <div class="member-name">Savela Margareta</div>
+    </div>
+    <div class="member" style="animation-delay: 2.2s;">
+        <div class="role">Wakil Ketua</div>
+        <img src="wakil.jpeg" alt="Wakil Ketua">
+        <div class="member-name">Michellino Dayaqqova</div>
+    </div>
+    <div class="member" style="animation-delay: 2.4s;">
+        <div class="role">Bendahara 1</div>
+        <img src="bendahara1.jpeg" alt="Bendahara 1">
+        <div class="member-name">Jetty Aprilia</div>
+    </div>
+    <div class="member" style="animation-delay: 2.6s;">
+        <div class="role">Bendahara 2</div>
+        <img src="bendahara2.jpeg" alt="Bendahara 2">
+        <div class="member-name">Chaesya Velove. H</div>
+    </div>
+    <div class="member" style="animation-delay: 2.8s;">
+        <div class="role">Sekretaris 1</div>
+        <img src="sekertaris1.jpeg" alt="Sekretaris 1">
+        <div class="member-name">Arel Ananda Praticia</div>
+    </div>
+    <div class="member" style="animation-delay: 3s;">
+        <div class="role">Sekretaris 2</div>
+        <img src="sekertaris2.jpeg" alt="Sekretaris 2">
+        <div class="member-name">Bintang Agung Alfarel</div>
+    </div>
+</div>
+
+<div class="directory-link">
+    <a href="javascript:history.back()">Kembali ke Halaman Utama</a>
+</div>
+
+</body>
+</html>
