@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Poppins', sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            overflow: hidden;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            background-color: #1e1e1e;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .content {
+            text-align: center;
+            z-index: 1;
+        }
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            cursor: pointer;
+            user-select: none;
+            letter-spacing: 0.5em;
+            font-weight: 700;
+        }
+        .letter {
+            display: inline-block;
+            transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
+        }
+        .letter:hover {
+            transform: translateY(-10px) rotate(10deg);
+        }
+        .interactive-text {
+            font-size: 1.2rem;
+            margin-top: 20px;
+            color: #9e9e9e;
+        }
+        #snakeCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+                margin-bottom: 15px;
+            }
+            .interactive-text {
+                font-size: 1rem; 
+            }
+        }
+    
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.5rem;
+                margin-bottom: 10px;
+            }
+            .interactive-text {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+    
+</head>
+<body>
+    <canvas id="snakeCanvas"></canvas>
+    <div class="container">
+        <div class="content">
+            <h1 id="comingSoon">COMING SOON</h1>
+            <p class="interactive-text">Arahkan kursor ke huruf</p>
+        </div>
+    </div>
+
+    <script>
+        const comingSoon = document.getElementById('comingSoon');
+        const text = comingSoon.textContent;
+        comingSoon.textContent = '';
+
+        for (let i = 0; i < text.length; i++) {
+            const span = document.createElement('span');
+            span.textContent = text[i];
+            span.className = 'letter';
+            comingSoon.appendChild(span);
+        }
+
+        const letters = document.querySelectorAll('.letter');
+        letters.forEach(letter => {
+            letter.addEventListener('mouseenter', () => {
+                const color = getRandomColor();
+                letter.style.color = color;
+                letter.style.textShadow = `0 0 5px ${color}, 0 0 10px ${color}`;
+            });
+            letter.addEventListener('mouseleave', () => {
+                setTimeout(() => {
+                    letter.style.color = '#ffffff';
+                    letter.style.textShadow = 'none';
+                }, 500);
+            });
+        });
+
+        function getRandomColor() {
+            const colors = ['#4CAF50', '#2196F3', '#FFC107', '#E91E63', '#9C27B0'];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        const canvas = document.getElementById('snakeCanvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let snake = [];
+        const snakeLength = 20;
+        let mouseX = 0, mouseY = 0;
+
+        for (let i = 0; i < snakeLength; i++) {
+            snake.push({ x: 0, y: 0 });
+        }
+
+        let hue = 0;
+
+        function drawSnake() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = snake.length - 1; i > 0; i--) {
+                snake[i].x = snake[i-1].x;
+                snake[i].y = snake[i-1].y;
+            }
+
+            snake[0].x += (mouseX - snake[0].x) * 0.1;
+            snake[0].y += (mouseY - snake[0].y) * 0.1;
+
+            ctx.shadowBlur = 20;
+            ctx.lineWidth = 5;
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+
+            for (let i = 0; i < snake.length - 1; i++) {
+                const gradient = ctx.createLinearGradient(
+                    snake[i].x, snake[i].y, 
+                    snake[i+1].x, snake[i+1].y
+                );
+                
+                const hueStart = (hue + i * 5) % 360;
+                const hueEnd = (hueStart + 5) % 360;
+                
+                gradient.addColorStop(0, `hsl(${hueStart}, 100%, 50%)`);
+                gradient.addColorStop(1, `hsl(${hueEnd}, 100%, 50%)`);
+
+                ctx.strokeStyle = gradient;
+                ctx.shadowColor = `hsl(${hueStart}, 100%, 50%)`;
+
+                ctx.beginPath();
+                ctx.moveTo(snake[i].x, snake[i].y);
+                ctx.lineTo(snake[i+1].x, snake[i+1].y);
+                ctx.stroke();
+            }
+
+            hue = (hue + 1) % 360;
+
+            requestAnimationFrame(drawSnake);
+        }
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        drawSnake();
+    </script>
+</body>
+</html>
