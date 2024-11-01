@@ -1,169 +1,139 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harga Jasa</title>
-    <link rel="icon" href="cash.png" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <title>Joki Tugas</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #e2f1f1;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      background-color: #f5f5f8;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 30px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 16px;
+      color: #333;
+      border: 2px solid #b5d4f5;
+      border-radius: 8px;
+    }
+
+    th, td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 2px solid #b5d4f5;
+      border-right: 2px solid #b5d4f5;
+    }
+
+    th {
+      background-color: #007bff;
+      color: #ffffff;
+      text-align: center;
+    }
+
+    tr:nth-child(even) {
+      background-color: #e7ecf1;
+    }
+
+    tr:hover {
+      background-color: #e6e6e6;
+    }
+
+    .price {
+      font-weight: bold;
+      color: #005f63;
+      text-align: center;
+    }
     
-    <style>
-        body {
-            font-family: 'Poppins', Arial, sans-serif;
-            background-color: #eaeaea;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            font-size: 1em;
-        }
-        h1 {
-            text-align: center;
-            color: #004d40;
-            margin: 20px 0;
-            font-size: 2em;
-        }
-        .table-container {
-            display: flex;
-            justify-content: center;
-            padding: 0 10px;
-        }
-        table {
-            width: 88%;
-            border-collapse: separate;
-            background-color: #ffffff;
-            border: 1px solid #a5bdb6;
-            margin: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        th, td {
-            padding: 10px;
-            text-align: center;
-            border: 1px solid #a5bdb6;
-            font-size: 0.9em;
-        }
-        th {
-            background-color: #00796b;
-            color: #ffffff;
-            font-weight: bold;
-        }
-        td {
-            background-color: #f2f2f2;
-            color: #333;
-        }
-        th:first-child {
-            border-radius: 8px 0 0 0;
-        }
-        th:last-child {
-            border-radius: 0 8px 0 0;
-        }
-        tr:last-child td:first-child {
-            border-radius: 0 0 0 8px;
-        }
-        tr:last-child td:last-child {
-            border-radius: 0 0 8px 0;
-        }
-        .contact-links {
-            text-align: center;
-            margin: 20px auto;
-        }
-        .contact-links p {
-            font-size: 1.2em;
-            color: #004d40;
-            margin: 0;
-        }
-        .contact-links a {
-            text-decoration: none;
-            color: #00796b;
-            font-size: 1.1em;
-            margin: 0 10px;
-            transition: color 0.3s ease;
-        }
-        .contact-links a:hover, .contact-links a:focus {
-            color: #004d40;
-            text-decoration: underline;
-        }
-        .back-button {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background-color: #00796b;
-            color: #ffffff;
-            padding: 5px 15px;
-            border: none;
-            border-radius: 5px;
-            font-size: 0.8em;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-            z-index: 1000;
-        }
-        .back-button:hover, .back-button:focus {
-            background-color: #004d40;
-            color: #ffffff;
-        }
-        .content {
-            margin-top: 50px;
-        }
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 1.5em;
-            }
-            .table-container table {
-                font-size: 0.8em;
-            }
-            .contact-links p {
-                font-size: 1em;
-            }
-            .contact-links a {
-                font-size: 0.9em;
-                display: block;
-                margin: 5px 0;
-            }
-            .back-button {
-                top: 10px;
-                left: 10px;
-                padding: 5px 12px;
-                font-size: 0.7em;
-            }
-        }
-    </style>
+    tr td:last-child, tr th:last-child {
+      border-right: none;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 24px;
+      }
+
+      table {
+        font-size: 14px;
+      }
+
+      th, td {
+        padding: 10px;
+      }
+    }
+
+    .contact {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .contact a {
+      display: block;
+      margin: 5px 0;
+      text-decoration: none;
+      color: #007bff;
+      font-size: 16px;
+    }
+
+    .contact i {
+      margin-right: 8px;
+    }
+  </style>
 </head>
 <body>
-    <a href="javascript:history.back()" class="back-button">Kembali</a>
-    <div class="content">
-        <h1>Harga Pengerjaan</h1>
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Jenis Dokumen</th>
-                        <th>Harga per Halaman</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Makalah</td>
-                        <td>Rp 3.000</td>
-                    </tr>
-                    <tr>
-                        <td>Artikel</td>
-                        <td>Rp 5.000</td>
-                    </tr>
-                    <tr>
-                        <td>Presentasi</td>
-                        <td>Rp 3.000</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="contact-links">
-            <p>Kontak Admin</p>
-            <a href="https://wa.me/" target="_blank">WhatsApp</a> 
-            <a href="https://www.instagram.com/" target="_blank">Instagram</a>
-        </div>
-        <div class="contact-links">
-            <a href="mailto:" target="_blank">michellino241@gmail.com</a>
-        </div>
+  <div class="container">
+    <h1>Jasa Ketik Tugas</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Jenis Dokumen</th>
+          <th>Harga/Halaman</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="nama">Makalah</td>
+          <td class="price">Rp 5.000</td>
+        </tr>
+        <tr>
+          <td class="nama">Artikel</td>
+          <td class="price">Rp 5.000</td>
+        </tr>
+        <tr>
+          <td class="nama">Presentasi</td>
+          <td class="price">Rp 4.000</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <div class="contact">
+      <p>Hubungi Admin Dawwy :</p>
+      <a href="https://wa.me/6281333866874" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+      <a href="https://instagram.com/jasa_ketik_dawwy" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+      <a href="https://discord.gg/bmnZdR9FkS" target="_blank"><i class="fab fa-discord"></i> Discord</a>
+      <a href="mailto:michellino241@gmail.com"><i class="fas fa-envelope"></i> Email</a>
     </div>
+  </div>
 </body>
 </html>
